@@ -17,8 +17,8 @@ public interface BitCoinRestApi {
     @GetMapping("/rest/tx/{txhash}.json")
     JSONObject getBlockByHash(@PathVariable(value = "txhash") String txhash);
 
-    @GetMapping("/rest/headers/{blockhash}.json")
-    JSONObject getBlockheaders( @PathVariable(value = "blockhash")String blockhash);
+    @GetMapping("/rest/headers/{count}/{blockhash}.json")
+    JSONObject getBlockheaders(@PathVariable(value = "count")Integer count, @PathVariable(value = "blockhash")String blockhash);
 
     @GetMapping("/rest/blockhashbyheight/{height}.json")
     JSONObject getBlockByHeight(@PathVariable(value = "height") String height);
