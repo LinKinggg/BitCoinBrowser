@@ -1,5 +1,6 @@
 package io.lzg.bitcoinexplorer0612.api;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +19,13 @@ public interface BitCoinRestApi {
     JSONObject getBlockByHash(@PathVariable(value = "txhash") String txhash);
 
     @GetMapping("/rest/headers/{count}/{blockhash}.json")
-    JSONObject getBlockheaders(@PathVariable(value = "count")Integer count, @PathVariable(value = "blockhash")String blockhash);
+    JSONArray getBlockheaders(@PathVariable(value = "count")Integer count, @PathVariable(value = "blockhash")String blockhash);
 
     @GetMapping("/rest/blockhashbyheight/{height}.json")
     JSONObject getBlockByHeight(@PathVariable(value = "height") String height);
 
-    @GetMapping("/rest/getutxos/checkmempool/{blockhash}.json 2>/dev/null | json_pp")
-    JSONObject getUTXO(@PathVariable(value = "blockhash") String blockhash);
+    @GetMapping("/rest/getutxos/checkmempool/{txid}-{n}.json")
+    JSONObject getUTXO(@PathVariable(value = "txid") String txid, @PathVariable(value = "n")Integer n);
 
     @GetMapping("/rest/mempool/info.json")
     JSONObject getMempool();
