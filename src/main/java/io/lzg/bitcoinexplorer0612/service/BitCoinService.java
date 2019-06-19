@@ -7,13 +7,15 @@ import java.util.Date;
 
 public interface BitCoinService {
 
-    void syncBlockData(String blockhash);
+    String syncBlockData(String blockhash) throws Throwable;
 
-    void syncTx(JSONObject txJson, String blockhash, Date time, Integer confirmations);
+    void syncBlockChainbyHash(String blockhash) throws Throwable;
 
-    void syncDetail(JSONObject txJson);
+    void syncTx(JSONObject txJson, String blockhash, Date time, Integer confirmations) throws Throwable;
 
-    void syncDetailVout(JSONArray vouts);
+    void syncDetail(JSONObject txJson, String txid) throws Throwable;
 
-    void syncDetailVin(JSONArray vins);
+    void syncDetailVout(JSONArray vouts, String txid);
+
+    void syncDetailVin(JSONArray vins, String txid) throws Throwable;
 }

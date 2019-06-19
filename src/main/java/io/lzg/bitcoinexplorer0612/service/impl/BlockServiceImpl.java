@@ -6,7 +6,6 @@ import io.lzg.bitcoinexplorer0612.dao.TransactionMapper;
 import io.lzg.bitcoinexplorer0612.dto.BlockGetDTO;
 import io.lzg.bitcoinexplorer0612.dto.BlockListDTO;
 import io.lzg.bitcoinexplorer0612.po.Block;
-import io.lzg.bitcoinexplorer0612.po.Transaction;
 import io.lzg.bitcoinexplorer0612.po.TransactionDetail;
 import io.lzg.bitcoinexplorer0612.service.BlockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +65,7 @@ public class BlockServiceImpl implements BlockService{
 
     //实现通过height获取区块接口
     @Override
-    public List<Transaction> getByHeight(String height) {
+    public ArrayList<BlockGetDTO> getByHeight(String height) {
         ArrayList<BlockGetDTO> blockGetDTOS = new ArrayList<>();
         List<Block> blocks = transactionMapper.selectByHeight(height);
         for (Block block : blocks) {
