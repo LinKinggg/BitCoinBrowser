@@ -36,10 +36,10 @@ public class BlockController {
     }
 
     @GetMapping("/getByHeight")
-    public ArrayList<Transaction> getByHeight(@RequestParam String height){
-        ArrayList<Transaction> transactions = new ArrayList<>();
-        List<Transaction> byHeight = blockService.getByHeight("");
-        return transactions;
+    public ArrayList<BlockGetDTO> getByHeight(@RequestParam String height){
+        ArrayList<BlockGetDTO> blockGetDTO = new ArrayList<>();
+        ArrayList<BlockGetDTO> byHeight = blockService.getByHeight("");
+        return blockGetDTO;
     }
 
     @GetMapping("/getByPrevBlcok")
