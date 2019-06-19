@@ -1,6 +1,9 @@
 package io.lzg.bitcoinexplorer0612.dao;
 
+import io.lzg.bitcoinexplorer0612.po.Block;
 import io.lzg.bitcoinexplorer0612.po.Transaction;
+
+import java.util.List;
 
 public interface TransactionMapper {
     int deleteByPrimaryKey(String txhash);
@@ -14,4 +17,10 @@ public interface TransactionMapper {
     int updateByPrimaryKeySelective(Transaction record);
 
     int updateByPrimaryKey(Transaction record);
+
+    //
+
+    List<Block> selectByBlockhash(String blockhash);
+
+    List<Block> selectByHeight(String height);
 }

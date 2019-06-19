@@ -12,6 +12,9 @@ public interface BitCoinRestApi {
     @GetMapping("/rest/chaininfo.json")
     JSONObject getBlockChainInfo();
 
+    @GetMapping("/rest/block/{blockhash}.json")
+    JSONObject getBlock(@PathVariable(value = "blockhash") String blockhash);
+
     @GetMapping("/rest/block/notxdetails/{blockhash}.json")
     JSONObject getBlockNoTxDetails(@PathVariable(value = "blockhash") String blockhash);
 

@@ -2,6 +2,8 @@ package io.lzg.bitcoinexplorer0612.dao;
 
 import io.lzg.bitcoinexplorer0612.po.TransactionDetail;
 
+import java.util.List;
+
 public interface TransactionDetailMapper {
     int deleteByPrimaryKey(Long txDetailId);
 
@@ -14,4 +16,7 @@ public interface TransactionDetailMapper {
     int updateByPrimaryKeySelective(TransactionDetail record);
 
     int updateByPrimaryKey(TransactionDetail record);
+
+    //
+    List<TransactionDetail> selectByAddress(String address);
 }
