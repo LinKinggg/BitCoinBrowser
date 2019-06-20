@@ -19,4 +19,6 @@ public interface TransactionDetailMapper {
 
     //
     List<TransactionDetail> selectByAddress(String address);
+
+    List<TransactionDetail> selectAll();
 }

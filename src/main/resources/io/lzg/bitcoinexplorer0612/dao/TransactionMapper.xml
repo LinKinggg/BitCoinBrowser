@@ -114,4 +114,11 @@
       confirmations = #{confirmations,jdbcType=INTEGER}
     where txhash = #{txhash,jdbcType=CHAR}
   </update>
+
+  <select id="selectAllByBlockhash" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from transaction
+    where blockhash = #{blockhash,jdbcType=INTEGER}
+  </select>
 </mapper>

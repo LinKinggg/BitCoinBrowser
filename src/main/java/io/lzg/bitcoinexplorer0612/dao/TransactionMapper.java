@@ -23,4 +23,8 @@ public interface TransactionMapper {
     List<Block> selectByBlockhash(String blockhash);
 
     List<Block> selectByHeight(String height);
+
+    List<Transaction> selectAll();
+
+    List<Transaction> selectAllByBlockhash(String blockhash);
 }

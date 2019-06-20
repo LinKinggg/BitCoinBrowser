@@ -1,7 +1,7 @@
 package io.lzg.bitcoinexplorer0612.dao;
 
+import com.github.pagehelper.Page;
 import io.lzg.bitcoinexplorer0612.po.Block;
-import io.lzg.bitcoinexplorer0612.po.Transaction;
 
 import java.util.List;
 
@@ -19,5 +19,8 @@ public interface BlockMapper {
     int updateByPrimaryKey(Block record);
 
     //最近区块
-    List<Block> selectRecentBlocks();
+    Page<Block> selectRecentBlocks();
+
+    //获取所有
+    List<Block> selectAll();
 }

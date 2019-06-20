@@ -56,7 +56,7 @@ public class TempController {
 //        blockService.getRecentBlocks();
 //        bitCoinService.syncTx("","",new Date(),1);
 //        bitCoinService.syncDetail("");
-        bitCoinService.syncBlockChainbyHash("0000000000007269a38df4cf2507eb886bc972e611b8130ac193b72a55ea66a7");
+//        bitCoinService.syncBlockChainbyHash("0000000000007269a38df4cf2507eb886bc972e611b8130ac193b72a55ea66a7");
         return null;
     }
 }

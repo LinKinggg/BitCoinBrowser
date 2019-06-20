@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @MapperScan("io.lzg.bitcoinexplorer0612.dao")
 @EnableFeignClients
 //定时任务
-@EnableScheduling
+//@EnableScheduling
 //异步调用，开启多线程
 @EnableAsync
 public class Bitcoinexplorer0612Application {
