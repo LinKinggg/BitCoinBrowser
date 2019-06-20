@@ -43,6 +43,19 @@ public class BitCoinServiceImpl implements BitCoinService{
     @Autowired
     private BitCoinJsonRpcApi bitCoinJsonRpcApi;
 
+
+    @Override
+    @Async
+    public void syncBlockChainbyHash(String blockhash) throws Throwable {
+        logger.info("start to sync blockchain from {}", blockhash);
+        String blockhashTemp = blockhash;
+        while (blockhashTemp != null && !blockhashTemp.isEmpty()){
+            String nextBlock = syncBlockData(blockhashTemp);
+            blockhashTemp = nextBlock;
+        }
+        logger.info("end sync blockchain");
+    }
+
     @Override
     @Transactional
     public String syncBlockData(String blockhash) throws Throwable {
@@ -68,18 +81,6 @@ public class BitCoinServiceImpl implements BitCoinService{
             syncTx(jsonObject, blockhash, time, confirmations);
         }
         return block.getNextBlock();
-    }
-
-    @Override
-    @Async
-    public void syncBlockChainbyHash(String blockhash) throws Throwable {
-        logger.info("start to sync blockchain from {}", blockhash);
-        String blockhashTemp = blockhash;
-        while (blockhashTemp != null && !blockhashTemp.isEmpty()){
-            String nextBlock = syncBlockData(blockhashTemp);
-            blockhashTemp = nextBlock;
-        }
-        logger.info("end sync blockchain");
     }
 
 
@@ -120,7 +121,8 @@ public class BitCoinServiceImpl implements BitCoinService{
             //ordinal()让列自动增长
             transactionDetail.setType((byte) DetailType.Receive.ordinal());
             transactionDetail.setAmount(jsonObject.getDouble("value"));
-            JSONArray addresses = jsonObject.getJSONArray("addresses");
+            JSONObject scriptPubKey = jsonObject.getJSONObject("scriptPubKey");
+            JSONArray addresses = scriptPubKey.getJSONArray("addresses");
             if (addresses != null){
                 String addressesString = addresses.getString(0);
                 transactionDetail.setAddress(addressesString);
