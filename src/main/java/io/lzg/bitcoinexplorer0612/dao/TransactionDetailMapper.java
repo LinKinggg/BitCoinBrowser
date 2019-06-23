@@ -21,4 +21,6 @@ public interface TransactionDetailMapper {
     List<TransactionDetail> selectByAddress(String address);
 
     List<TransactionDetail> selectAll();
+
+    List<TransactionDetail> getAllByAddress(String name);
 }

@@ -119,6 +119,12 @@
     select
     <include refid="Base_Column_List" />
     from transaction
-    where blockhash = #{blockhash,jdbcType=INTEGER}
+  </select>
+
+  <select id="getAllByTxhash" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from transaction
+    where txhash = #{txhash,jdbcType=INTEGER}
   </select>
 </mapper>

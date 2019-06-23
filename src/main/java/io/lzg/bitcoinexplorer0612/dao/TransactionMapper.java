@@ -26,5 +26,7 @@ public interface TransactionMapper {
 
     List<Transaction> selectAll();
 
-    List<Transaction> selectAllByBlockhash(String blockhash);
+    List<Transaction> selectAllByBlockhash();
+
+    List<Transaction> getAllByTxhash(String name);
 }

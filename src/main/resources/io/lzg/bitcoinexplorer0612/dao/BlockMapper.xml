@@ -152,4 +152,29 @@
     <include refid="Base_Column_List" />
     from block
   </select>
+
+  <!--GetDTO-->
+  <resultMap id="BlockGetDTO" type="io.lzg.bitcoinexplorer0612.dto.BlockGetDTO">
+    <id column="blockhash" jdbcType="CHAR" property="blockhash" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="txSize" jdbcType="SMALLINT" property="txSize" />
+    <result column="size" jdbcType="INTEGER" property="size" />
+    <result column="difficulty" jdbcType="DOUBLE" property="difficulty" />
+    <result column="next_block" jdbcType="CHAR" property="nextBlock" />
+    <result column="outputTotal" jdbcType="CHAR" property="outputTotal" />
+    <result column="fees" jdbcType="CHAR" property="fees" />
+  </resultMap>
+  <select id="selectAllByHeight" resultMap="BlockGetDTO">
+    select
+    <include refid="Base_Column_List" />
+    from block
+    where height = #{height,jdbcType=INTEGER}
+  </select>
+  <select id="getAllByBlockhash" resultMap="BlockGetDTO">
+    select
+    <include refid="Base_Column_List" />
+    from block
+    where blockhash = #{blockhash,jdbcType=INTEGER}
+  </select>
 </mapper>

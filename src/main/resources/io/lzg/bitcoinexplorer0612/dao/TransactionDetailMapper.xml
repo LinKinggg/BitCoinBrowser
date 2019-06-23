@@ -96,4 +96,11 @@
     <include refid="Base_Column_List" />
     from transaction_detail
   </select>
+
+  <select id="getAllByAddress" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from transaction_detail
+    where address = #{address,jdbcType=INTEGER}
+  </select>
 </mapper>

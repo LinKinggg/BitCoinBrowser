@@ -21,10 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 @Service
-public class BitCoinServiceImpl implements BitCoinService{
+public class BitCoinServiceImpl implements BitCoinService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -49,7 +48,7 @@ public class BitCoinServiceImpl implements BitCoinService{
     public void syncBlockChainbyHash(String blockhash) throws Throwable {
         logger.info("start to sync blockchain from {}", blockhash);
         String blockhashTemp = blockhash;
-        while (blockhashTemp != null && !blockhashTemp.isEmpty()){
+        while (blockhashTemp != null && !blockhashTemp.isEmpty()) {
             String nextBlock = syncBlockData(blockhashTemp);
             blockhashTemp = nextBlock;
         }
@@ -123,7 +122,7 @@ public class BitCoinServiceImpl implements BitCoinService{
             transactionDetail.setAmount(jsonObject.getDouble("value"));
             JSONObject scriptPubKey = jsonObject.getJSONObject("scriptPubKey");
             JSONArray addresses = scriptPubKey.getJSONArray("addresses");
-            if (addresses != null){
+            if (addresses != null) {
                 String addressesString = addresses.getString(0);
                 transactionDetail.setAddress(addressesString);
             }
@@ -140,7 +139,7 @@ public class BitCoinServiceImpl implements BitCoinService{
 
             Integer voutnum = jsonObject.getInteger("vout");
 
-            if (vintxid != null){
+            if (vintxid != null) {
                 JSONObject vinTxJson = bitCoinJsonRpcApi.getTransactionById(vintxid);
                 JSONArray vouts = vinTxJson.getJSONArray("vout");
                 JSONObject utxoJson = vouts.getJSONObject(voutnum);
@@ -151,7 +150,7 @@ public class BitCoinServiceImpl implements BitCoinService{
                 transactionDetail.setType((byte) DetailType.Send.ordinal());
                 JSONObject scriptPubKey = utxoJson.getJSONObject("scriptPubKey");
                 JSONArray addresses = scriptPubKey.getJSONArray("addresses");
-                if (addresses != null){
+                if (addresses != null) {
                     String address = addresses.getString(0);
                     transactionDetail.setAddress(address);
                 }

@@ -24,4 +24,11 @@ public class TransactionDetailController {
         List<TransactionDetail> transactionDetails = transactionDetailMapper.selectAll();
         return  transactionDetails;
     }
+
+    // 通过Address查询交易详情表的所有数据
+    @GetMapping("/getAllByAddress")
+    public List<TransactionDetail> getAllByAddress(String address){
+        List<TransactionDetail> addresses = transactionDetailMapper.getAllByAddress(address);
+        return addresses;
+    }
 }
